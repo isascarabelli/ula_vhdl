@@ -4,8 +4,11 @@ use ieee.std_logic_1164.all;
 entity somador1b is 
 	port (a : in std_logic;
     	  b : in std_logic;
-          modo : in std_logic;
-          s1 : out std_logic);
+          carryIn : out std_logic;
+          s1 : out std_logic;
+          s2 : out std_logic;
+          s3 : out std_logic;
+          carryOut : out std_logic);
 end somador1b;
 
 architecture somador1b_arch of somador1b is
@@ -19,15 +22,11 @@ architecture somador1b_arch of somador1b is
      signal S_primeira_soma : std_logic;
      signal S_primeiro_carry : std_logic;
      signal S_segundo_carry : std_logic;
-     signal S_sel_modo : std_logic;
      
      begin 
-     S_sel_modo <= B xor modo;
-     S_primeiro_carry <= modo;
-     
      	somador1 : meio_somador
         	port map (a => a, 
-            		  b => S_sel_modo,
+            		  b => b,
                       s1 => S_primeira_soma,
                       carry => S_primeiro_carry);
            
@@ -38,5 +37,8 @@ architecture somador1b_arch of somador1b is
                       carry => S_segundo_carry);
                       
          carry <= S_primeiro_carry or S_segundo_carry;
+         
+         s2 <= a and b;
+         s3 <= a or b;
          
 end somador1b_arch;
