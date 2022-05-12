@@ -10,7 +10,8 @@ entity ula is
           less : in std_logic;
           bInvert : in std_logic;
           carryOut : out std_logic;
-          saida : out std_logic);
+          saida : out std_logic;
+	  set : out std_logic);
 end ula;
 
 architecture ula_arch of ula is
