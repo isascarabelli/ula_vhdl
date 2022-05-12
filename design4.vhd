@@ -6,7 +6,7 @@ entity ula is
 	port (a : in std_logic;
     	  b : in std_logic;
           carryIn : in std_logic;
-          sel : in std_logic;
+          sel : in std_logic_vector(1 downto 0);
           less : in std_logic;
           bInvert : in std_logic;
           carryOut : out std_logic;
@@ -40,7 +40,7 @@ architecture ula_arch of ula is
      with bInvert select
 
   		S_signal4 <= b when '0',
-       				(not b) when others;
+       			    (not b) when others;
        
      somador : somador1b
      	port map(a => a, 
